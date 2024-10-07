@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {PropsWithChildren, useEffect, useLayoutEffect, useMemo} from 'react'
+
+import {Outlet, RouterProvider, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {buildRouter} from "./router.tsx";
+import {observer} from "mobx-react-lite";
+import {Services} from "./stores/services.ts";
+import {Router} from "./stores/router.ts";
+import {Layout} from "antd";
+import {Content} from "antd/es/layout/layout";
+import {ServicesContext, useServices} from "./stores/context/service-context";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const router = useMemo(() => buildRouter(RouterRoot), []);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <RouterProvider router={router}/>
+    )
 }
+
+const RouterRoot = observer(() => {
+    const services = useMemo(() => new Services(), [Services]);
+
+    useAppLoader(services.application.loading);
+    useEffect(() => {
+        services.application.load();
+    }, [services.application]);
+
+    return (
+        <ServicesContext.Provider value={services}>
+            <RoutingConnectionHOC router={services.router}>
+                <Layout>
+                    <Content>
+                        <Outlet/>
+                    </Content>
+                </Layout>
+            </RoutingConnectionHOC>
+        </ServicesContext.Provider>
+    );
+});
+
+const RoutingConnectionHOC = observer((props: PropsWithChildren<{ router: Router }>) => {
+    const { router, filter, pagination } = useServices();
+    const navigate = useNavigate();
+    const [params, serParams] = useSearchParams();
+    const routeParams = useParams();
+    const location = useLocation();
+
+    router.provide(navigate, serParams, params, routeParams, location);
+    filter.provide(params);
+    pagination.provide(params);
+
+    return props.children as JSX.Element;
+});
+
+const useAppLoader = (loading: boolean) => {
+    useLayoutEffect(() => {
+        const loaderClass = 'apploader';
+        const bodyClasses = document.body.classList;
+
+        if (loading) {
+            bodyClasses.add(loaderClass);
+        } else {
+            bodyClasses.remove(loaderClass);
+        }
+
+    }, [loading]);
+};
 
 export default App

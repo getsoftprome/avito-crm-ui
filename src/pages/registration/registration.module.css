@@ -1,0 +1,13 @@
+.container {
+    background: #fff;
+    max-width: 420px;
+    margin: auto;
+    padding: 15px 30px 5px;
+    border-radius: 16px;
+    margin-top: 30px;
+}
+
+.label {
+    font-size: 35px;
+    margin-bottom: 20px;
+}

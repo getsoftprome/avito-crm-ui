@@ -1,0 +1,11 @@
+mutation User(
+    $input: UserInput
+)
+{
+    User(
+        input: $input
+    )
+    {
+        id
+    }
+}

@@ -1,0 +1,17 @@
+overwrite: true
+generates:
+  src/generated/graphql/user.tsx:
+    schema: "./graphql-generator/user/schema.graphql"
+    documents: "./graphql-generator/user/{query,mutation}/*.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typed-document-node"
+    config:
+      useTypeImports: true
+      maybeValue: 'T'
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: true
+        defaultValue: true

@@ -1,0 +1,27 @@
+schema {
+    query: UserQuery
+    mutation: UserMutation
+}
+
+interface User {
+    id: String
+    name: String
+    email: String
+    phone: String
+}
+
+type UserQuery {
+    User: User!
+}
+
+type UserMutation {
+    User(input: UserInput): User!
+}
+
+input UserInput {
+    id: String
+    name: String
+    email: String
+    phone: String
+    password: String
+}
