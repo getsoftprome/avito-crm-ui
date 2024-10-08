@@ -11,7 +11,7 @@ export class Application {
 
     async load() {
         this.toState('loading');
-        const { auth } = this.services;
+        const { auth} = this.services;
 
         if (!auth.identity) {
             await auth.checkIdentity();

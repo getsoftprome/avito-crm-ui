@@ -1,6 +1,5 @@
 import type {Element, Menu} from '../stores/menu';
 
-
 const landingItems: Element[] = [
     {
         key: 'opportunities',
@@ -22,4 +21,5 @@ const landingItems: Element[] = [
 export const setLandingMenuItems = (menu: Menu) => {
     menu.setElements(landingItems);
 };
+
 

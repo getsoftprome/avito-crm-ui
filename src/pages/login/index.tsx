@@ -1,19 +1,35 @@
-import {useMemo} from "react";
-import {Services} from "../../stores/services.ts";
-import {LandingMenu} from "../../components/landing-menu";
 import style from "../registration/registration.module.css";
 import {Button, Checkbox, Form, Input} from "antd";
+import {useServices} from "../../stores/context/service-context.ts";
 
 export const LoginPage = () => {
-    const services = useMemo(() => new Services(), [Services]);
+    const services = useServices();
+
+    const [form] = Form.useForm();
+    const signin = async () => {
+        const response = await fetch(`/api/auth`, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: form.getFieldValue('email'),
+                password: form.getFieldValue('password')
+            }),
+            credentials: 'include'
+        });
+
+        if (response.status === 204) {
+            await services.auth.checkIdentity();
+
+            services.router.navigate('/');
+        }
+    }
 
     return (
         <>
-            <LandingMenu items={services.landingMenu.menuItems} selectedKey={'registration'}></LandingMenu>
             <div className={style.container}>
                 <div className={style.label}>Вход</div>
                 <Form
                     layout="vertical"
+                    form={form}
                 >
                     <Form.Item
                         label="Email"
@@ -38,7 +54,7 @@ export const LoginPage = () => {
                         <Checkbox>Запомнить меня</Checkbox>
                     </Form.Item>
                     <Form.Item>
-                        <Button style={{width: '100%'}} size={'large'} type="primary" htmlType="submit">
+                        <Button style={{width: '100%'}} size={'large'} type="primary" onClick={signin}>
                             Войти
                         </Button>
                     </Form.Item>

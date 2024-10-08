@@ -10,3 +10,12 @@
     align-items: center;
     padding-right: 20px;
 }
+
+.logo {
+    background: #fff;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}

@@ -1,0 +1,11 @@
+mutation Platform(
+    $input: PlatformInput!
+)
+{
+    Platform(
+        input: $input
+    )
+    {
+        id
+    }
+}

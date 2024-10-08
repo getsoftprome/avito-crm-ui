@@ -20,7 +20,7 @@ export class Services {
     pagination = new Pagination();
 
     constructor() {
-        setLandingMenuItems(this.landingMenu);
         makeAutoObservable(this);
+        setLandingMenuItems(this.landingMenu);
     }
 }

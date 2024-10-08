@@ -6,6 +6,10 @@ import {ErrorPage} from "./pages/error";
 import {LoginPage} from "./pages/login";
 import {DashboardPage} from "./pages/dashboard";
 import {RegistrationPage} from "./pages/registration";
+import {LandingLayout} from "./features/landing/landing-layout.tsx";
+import {HomePage} from "./pages/home";
+import {PlatformCreatePage} from "./pages/platform-create";
+import {PlatformLayout} from "./features/platform/platform-layout.tsx";
 
 const access = (route: RouteObject, area: string) => (
     <AccessGuard
@@ -31,13 +35,12 @@ export const buildRouter = (Root: ComponentType) => {
                 {
                     path: "/",
                     errorElement: <ErrorPage />,
+                    element: <LandingLayout />,
                     children: [
-                        ...cabinetGroup(
-                            {
-                                path: "/:platform/dashboard",
-                                element: <DashboardPage />,
-                            },
-                        ),
+                        {
+                            path: "/",
+                            element: <HomePage />,
+                        },
                         {
                             path: "/login",
                             element: <LoginPage />,
@@ -46,6 +49,23 @@ export const buildRouter = (Root: ComponentType) => {
                             path: "/registration",
                             element: <RegistrationPage />,
                         },
+                        {
+                            path: "/new-platform",
+                            element: <PlatformCreatePage />,
+                        },
+                    ]
+                },
+                {
+                    path: '/:platform',
+                    errorElement: <ErrorPage />,
+                    element: <PlatformLayout />,
+                    children: [
+                        ...cabinetGroup(
+                            {
+                                path: "/:platform/dashboard",
+                                element: <DashboardPage />,
+                            },
+                        ),
                     ]
                 }
             ],

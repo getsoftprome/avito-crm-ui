@@ -1,4 +1,4 @@
-import {type NormalizedCacheObject, type Operation, ApolloClient, InMemoryCache, HttpLink} from '@apollo/client';
+import { type NormalizedCacheObject, type Operation,ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from "apollo-upload-client";
 
 import { filtersdate } from '../utils/formatters.date';
@@ -9,19 +9,12 @@ export class Api {
     clientUpload: ApolloClient<NormalizedCacheObject>
     fql: FQL
 
-    host = 'https://kefteme-drop.ru';
+    host = 'https://local.kefteme-drop.ru';
     base = `${this.host}/api/`
 
     constructor() {
-        const link = new HttpLink({
-            uri: this.base,
-            fetchOptions: {
-                mode: 'no-cors'
-            }
-        });
-
         this.client = new ApolloClient({
-            link: link,
+            uri: () => this.getUrl(),
             // credentials: 'include',
             cache: new InMemoryCache({
                 possibleTypes: {}

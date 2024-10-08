@@ -4,5 +4,13 @@ query UserQuery {
         name
         email
         phone
+        platformAccesses {
+            id
+            platform {
+                id
+                code
+                name
+            }
+        }
     }
 }

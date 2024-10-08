@@ -1,13 +1,10 @@
 import {Button, Checkbox, Form, Input} from "antd";
 
-import InputMask from 'react-input-mask';
 import style from './registration.module.css';
-import {LandingMenu} from "../../components/landing-menu";
-import {Services} from "../../stores/services";
-import {useMemo} from "react";
 import {UserDocument} from "../../generated/graphql/user.tsx";
+import {useServices} from "../../stores/context/service-context.ts";
 export const RegistrationPage = () => {
-    const services = useMemo(() => new Services(), [Services]);
+    const services = useServices();
 
     const [form] = Form.useForm();
 
@@ -31,7 +28,6 @@ export const RegistrationPage = () => {
 
     return (
         <>
-            <LandingMenu items={services.landingMenu.menuItems} selectedKey={'registration'}></LandingMenu>
             <div className={style.container}>
                 <div className={style.label}>Создайте аккаунт</div>
                 <Form
@@ -53,16 +49,6 @@ export const RegistrationPage = () => {
                         layout="vertical"
                     >
                         <Input size={'large'} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Номер телефона"
-                        name="phone"
-                        rules={[{ required: true, message: 'Номер телефона не может быть пустым!' }]}
-                        layout="vertical"
-                    >
-                        <InputMask mask="+7 (999) 999-99-99" placeholder="Номер телефона">
-                            {() => <Input size={'large'}/>}
-                        </InputMask>
                     </Form.Item>
                     <Form.Item
                         label="Пароль"

@@ -1,21 +1,36 @@
 schema {
-    query: UserQuery
-    mutation: UserMutation
+    query: UserQueries
+    mutation: UserMutations
 }
 
-interface User {
+type Platform {
+    id: String
+    name: String
+    code: String
+}
+
+type User {
     id: String
     name: String
     email: String
     phone: String
+    platformAccesses: [UserPlatformAccess]
 }
 
-type UserQuery {
+type UserPlatformAccess {
+    id: String
+    user: User
+    platform: Platform
+}
+
+type UserQueries {
     User: User!
+    PlatformByCode(code: String!): Platform
 }
 
-type UserMutation {
-    User(input: UserInput): User!
+type UserMutations {
+    User(input: UserInput!): User!
+    Platform(input: PlatformInput!): Platform
 }
 
 input UserInput {
@@ -24,4 +39,9 @@ input UserInput {
     email: String
     phone: String
     password: String
+}
+
+input PlatformInput {
+    id: String
+    name: String
 }

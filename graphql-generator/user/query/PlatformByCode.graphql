@@ -1,0 +1,13 @@
+query PlatformByCode(
+    $code: String!
+)
+{
+    PlatformByCode(
+        code: $code
+    )
+    {
+        id
+        name
+        code
+    }
+}
