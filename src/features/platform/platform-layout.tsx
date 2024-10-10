@@ -5,6 +5,7 @@ import style from "./platform-layout.module.css";
 import {observer} from "mobx-react-lite";
 import {useMemo} from "react";
 import {PlatformStore} from "./store";
+import {PlatformHeader} from "../../components/platform-header";
 
 
 export const PlatformLayout = observer(() => {
@@ -13,16 +14,23 @@ export const PlatformLayout = observer(() => {
 
     const platformStore = useMemo(() => new PlatformStore(services, code!), [PlatformStore, code]);
 
+    services.setPlatform(platformStore.platform!)
+
     return (
         <div className={style.container}>
             <div className={style['left-bar']}>
-                <div className={style['platform-label']}>{platformStore.platform?.name}</div>
-                <PlatformMenu
-                    selectedKey={'dashboard'}
-                />
+                <div className={style['platform-label']}>{platformStore.platform?.name.toUpperCase()}</div>
+                <div className={style['menu-container']}>
+                    <PlatformMenu
+                        selectedKey={'dashboard'}
+                    />
+                </div>
             </div>
-            <div>
-                <Outlet/>
+            <div className={style['right-bar']}>
+                <PlatformHeader />
+                <div className={style.content}>
+                    <Outlet/>
+                </div>
             </div>
         </div>
     );

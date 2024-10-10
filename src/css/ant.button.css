@@ -1,0 +1,30 @@
+.ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.ant-btn-variant-outlined {
+    background: var(--hover-color);
+    border-color: var(--background);
+}
+
+.ant-btn-lg {
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+.ant-btn-color-default {
+    box-shadow: unset;
+}
+
+.ant-btn-variant-solid {
+    background: var(--main-color);
+}
+
+.ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover {
+    background: var(--main-grand-color);
+}
+
+.ant-btn-color-primary {
+    box-shadow: unset;
+}

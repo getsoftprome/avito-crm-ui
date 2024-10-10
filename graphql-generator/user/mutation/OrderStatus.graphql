@@ -1,0 +1,11 @@
+mutation OrderStatus(
+    $input: OrderStatusInput!
+)
+{
+    OrderStatus(
+        input: $input
+    )
+    {
+        id
+    }
+}

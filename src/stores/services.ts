@@ -8,6 +8,7 @@ import {Filter} from "./filter";
 import {Menu} from "./menu";
 import {Pagination} from "./pagination";
 import {Router} from "./router";
+import {Platform} from "../generated/graphql/user.tsx";
 
 export class Services {
     application = new Application(this)
@@ -19,8 +20,14 @@ export class Services {
     filter = new Filter();
     pagination = new Pagination();
 
+    platform: Platform | null = null;
+
     constructor() {
         makeAutoObservable(this);
         setLandingMenuItems(this.landingMenu);
+    }
+
+    setPlatform(platform: Platform) {
+        this.platform = platform;
     }
 }

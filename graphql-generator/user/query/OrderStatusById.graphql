@@ -1,0 +1,14 @@
+query OrderStatusById(
+    $id: String!
+
+)
+{
+    OrderStatusById(
+        id: $id
+    )
+    {
+        id
+        name
+        color
+    }
+}

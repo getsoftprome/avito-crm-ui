@@ -3,6 +3,12 @@ schema {
     mutation: UserMutations
 }
 
+type OrderStatus {
+    id: String
+    name: String
+    color: String
+}
+
 type Platform {
     id: String
     name: String
@@ -26,11 +32,22 @@ type UserPlatformAccess {
 type UserQueries {
     User: User!
     PlatformByCode(code: String!): Platform
+    OrderStatusList(platformId: String!): [OrderStatus]
+    OrderStatusById(id: String!): OrderStatus
 }
 
 type UserMutations {
     User(input: UserInput!): User!
-    Platform(input: PlatformInput!): Platform
+    Platform(input: PlatformInput!): Platform!
+    OrderStatus(input: OrderStatusInput!): OrderStatus!
+    OrderStatusDelete(id: String!): Boolean
+}
+
+input OrderStatusInput {
+    id: String
+    name: String
+    color: String
+    platformId: String
 }
 
 input UserInput {

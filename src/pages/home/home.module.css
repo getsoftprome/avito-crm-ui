@@ -8,7 +8,7 @@
 .block {
     margin: 20px auto;
     padding: 30px;
-    background: #fff;
+    background: var(--background);
     border-radius: 10px;
     max-width: 1280px;
 }

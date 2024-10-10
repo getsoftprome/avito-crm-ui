@@ -1,0 +1,21 @@
+.container {
+    width: 250px;
+    padding: 13px 20px;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.actions {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.header:hover .actions {
+    opacity: 100;
+}

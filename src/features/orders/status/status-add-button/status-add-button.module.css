@@ -1,0 +1,9 @@
+.button {
+    width: 250px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    overflow: hidden;
+    padding: 20px;
+}

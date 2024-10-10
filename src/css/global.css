@@ -1,8 +1,12 @@
+@import url('./commons.css');
 @import url('./ant.layout.css');
+@import url('./ant.menu.css');
+@import url('./ant.button.css');
+@import url('./ant.modal.css');
 
 body {
     margin: 0;
-    background: #f5f5f5;
+    background: var(--background);
 }
 
 * {

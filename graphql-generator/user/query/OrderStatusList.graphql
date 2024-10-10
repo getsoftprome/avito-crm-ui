@@ -1,0 +1,13 @@
+query OrderStatusList(
+    $platformId: String!
+)
+{
+    OrderStatusList(
+        platformId: $platformId
+    )
+    {
+        id
+        name
+        color
+    }
+}

@@ -1,0 +1,16 @@
+.left-block {
+    width: 33.3%;
+}
+
+.right-block {
+    width: 99.3%;
+}
+
+.statistic {
+    display: flex;
+    gap: 25px;
+}
+
+.container {
+    display: flex;
+}

@@ -1,0 +1,8 @@
+mutation OrderStatusDelete(
+    $id: String!
+)
+{
+    OrderStatusDelete(
+        id: $id
+    )
+}

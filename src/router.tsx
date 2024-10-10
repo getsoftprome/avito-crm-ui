@@ -10,6 +10,7 @@ import {LandingLayout} from "./features/landing/landing-layout.tsx";
 import {HomePage} from "./pages/home";
 import {PlatformCreatePage} from "./pages/platform-create";
 import {PlatformLayout} from "./features/platform/platform-layout.tsx";
+import {OrdersPage} from "./pages/orders";
 
 const access = (route: RouteObject, area: string) => (
     <AccessGuard
@@ -64,6 +65,10 @@ export const buildRouter = (Root: ComponentType) => {
                             {
                                 path: "/:platform/dashboard",
                                 element: <DashboardPage />,
+                            },
+                            {
+                                path: "/:platform/orders",
+                                element: <OrdersPage />,
                             },
                         ),
                     ]

@@ -1,0 +1,7 @@
+:root {
+    --background: #fafafe;
+    --main-color: rgb(148 204 125);
+    --main-color-blur: rgb(148 204 125 / 48%);
+    --hover-color: rgba(242, 242, 246, 1);
+    --main-grand-color: rgb(118 177 93);
+}

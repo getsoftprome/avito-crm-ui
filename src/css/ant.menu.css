@@ -1,0 +1,39 @@
+.ant-menu-light {
+    background: #fff0;
+}
+
+.ant-menu-vertical >.ant-menu-item {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.ant-menu-light .ant-menu-item-selected {
+    background: linear-gradient(90deg, var(--main-color-blur) 0%, var(--hover-color) 45%);
+    color: #000;
+    font-weight: bold;
+}
+
+.ant-menu-light .ant-menu-item {
+    padding-left: 40px;
+}
+
+.ant-menu-light:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
+    background: var(--main-color-blur);
+}
+
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+    border-inline-end: unset;
+}
+
+.ant-menu .ant-menu-item .ant-menu-item-icon {
+    font-size: 20px;
+}
+
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+    width: 100%;
+}
+
+.ant-menu .ant-menu-item {
+    border-radius: 15px;
+}
